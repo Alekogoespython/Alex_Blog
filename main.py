@@ -20,7 +20,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from flask_gravatar import Gravatar
 from flask_ckeditor import CKEditor, CKEditorField
-# import os
+import os
 # from dotenv import dotenv_values, load_dotenv
 
 # path = dotenv.find_dotenv("sensitive.env")
@@ -28,12 +28,12 @@ from flask_ckeditor import CKEditor, CKEditorField
 # print(os.getenv('SERVICE_ACCOUNT_FILE'))
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")  # old one: 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
