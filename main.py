@@ -86,7 +86,7 @@ class Comment(db.Model):  # Child of BlogPost and User
     parent_post = relationship("BlogPost", back_populates="comments")
 
 
-# db.create_all()
+db.create_all()
 
 
 # decorator to check, if admin is logged in
