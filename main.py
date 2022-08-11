@@ -14,7 +14,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, Length  # pip install email_validator
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from forms import CreatePostForm
+from forms import CreatePostForm, LoginForm, CommentForm, RegisterForm
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -87,28 +87,6 @@ class Comment(db.Model):  # Child of BlogPost and User
 
 
 # db.create_all()
-
-
-# declarate Form Classes
-class LoginForm(FlaskForm):
-    email = StringField('Email', [DataRequired(), Email(), Length(max=100)])
-    password = PasswordField('Password', [DataRequired(), Length(min=5, max=25)])
-
-    submit = SubmitField('submit')
-
-
-class RegisterForm(FlaskForm):
-    name = StringField('Name', [DataRequired(), Length(max=50)])
-    email = StringField('Email', [DataRequired(), Email(), Length(max=100)])
-    password = PasswordField('Password', [DataRequired(), Length(min=5, max=25)])
-
-    submit = SubmitField('submit')
-
-
-class CommentForm(FlaskForm):
-    comment = CKEditorField('Blog Content', validators=[DataRequired()])
-
-    submit = SubmitField('submit')
 
 
 # decorator to check, if admin is logged in
