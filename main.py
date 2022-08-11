@@ -2,6 +2,8 @@
 # created 08/08/2022
 
 from functools import wraps
+
+import dotenv
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -19,6 +21,12 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from flask_gravatar import Gravatar
 from flask_ckeditor import CKEditor, CKEditorField
+import os
+from dotenv import dotenv_values, load_dotenv
+
+path = dotenv.find_dotenv("sensitive.env")
+load_dotenv(dotenv_path=path)
+print(os.getenv('SERVICE_ACCOUNT_FILE'))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
